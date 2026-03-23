@@ -26,4 +26,5 @@
     <string name="text12">Introduce tu nombre</string>
     <string name="text13">Nombre del usuario</string>
     <string name="text14">Introduce tu direccion</string>
+    <string name="text15">Enviar</string>
 </resources>
