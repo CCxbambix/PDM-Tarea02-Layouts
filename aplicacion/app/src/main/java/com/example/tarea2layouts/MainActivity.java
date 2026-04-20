@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         //Comente una linea para poder ver la otra layout
-        setContentView(R.layout.activity_main);
-        //setContentView(R.layout.activity_chilaquiles);
+        //setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_chilaquiles);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

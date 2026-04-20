@@ -1,159 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".chilaquiles">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <RadioGroup
-        android:id="@+id/radioGroup2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <RadioButton
-            android:id="@+id/radioButton5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radiobttn5" />
-
-        <RadioButton
-            android:id="@+id/radioButton6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radiobttn6" />
-
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/radioGroup3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
-
-        <RadioButton
-            android:id="@+id/radioButton12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/radiobttn7" />
-
-        <RadioButton
-            android:id="@+id/radioButton13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/radiobttn8" />
-
-        <RadioButton
-            android:id="@+id/radioButton14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/radiobttn9" />
-
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:text="@string/text5"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:text="@string/text4"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup3">
-
-        <CheckBox
-            android:id="@+id/checkBox4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/checkbox4" />
-
-        <CheckBox
-            android:id="@+id/checkwrap_contentBox5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/checkbox5" />
-
-        <CheckBox
-            android:id="@+id/checkBox6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/checkbox6" />
-
-        <CheckBox
-            android:id="@+id/checkBox7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/checkbox7" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:text="@string/text6"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <!-- AppBarLayout con Toolbar -->
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/text14" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:title="@string/titleToolBar"
+            app:menu="@menu/menu_toolbar"
+            app:navigationIcon="@drawable/more"/>
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:text="@string/text8"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include layout="@layout/contenido"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -27,4 +27,9 @@
     <string name="text13">Nombre del usuario</string>
     <string name="text14">Introduce tu direccion</string>
     <string name="text15">Enviar</string>
+    <string name="menu1">Carrito</string>
+    <string name="menu2">Configuracion</string>
+    <string name="menu3">Cuenta</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="titleToolBar">Pedido Chilaquiles</string>
 </resources>
