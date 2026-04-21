@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <group android:checkableBehavior="single">
+
+            <item
+                android:id= "@+id/nav_agregar"
+                android:icon="@drawable/add"
+                android:title="agregar_orden" />
+
+            <item
+                android:id= "@+id/nav_eliminar"
+                android:icon="@drawable/indeterminate"
+                android:title="eliminar_orden" />
+
+            <item
+                android:id= "@+id/nav_modificar"
+                android:icon="@drawable/stylus"
+                android:title="modificar_orden" />
+
+
+        </group>
+
+             <item
+                 android:id= "@+id/nav_chat"
+                 android:icon="@drawable/chat"
+                 android:title="chat" />
+
+</menu>

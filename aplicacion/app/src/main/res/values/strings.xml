@@ -32,4 +32,7 @@
     <string name="menu3">Cuenta</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="titleToolBar">Pedido Chilaquiles</string>
+    <string name="titleNavigator">Chilaquiles</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
