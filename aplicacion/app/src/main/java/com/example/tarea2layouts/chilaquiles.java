@@ -131,7 +131,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         }else{
             pedido+= "ninguna\n";
         }
-        pedido += "Con proteina: ";
+        pedido += "Proteina: ";
         radioProteina = findViewById(R.id.radioGroup3);
         int idProteina = radioProteina.getCheckedRadioButtonId();
         if(idProteina == R.id.radioButton12){
@@ -147,7 +147,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         queso = findViewById(R.id.checkBox5);
         crema = findViewById(R.id.checkBox6);
         frijoles = findViewById(R.id.checkBox7);
-        pedido+= "Con complementos";
+        pedido+= "Complementos:";
         if(cebolla.isChecked()){
             pedido += " cebolla,";
         }
@@ -161,12 +161,11 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
             pedido += " frijoles";
         }
         direccion = (TextView) findViewById(R.id.textDireccion);
-        pedido += " \nDirección de entrega" + direccion.getText().toString();
+        pedido += " \nDirección de entrega: " + direccion.getText().toString();
 
         Intent intent = new Intent(chilaquiles.this, carrito.class);
         intent.putExtra(EXTRA_PEDIDO, pedido);
         startActivity(intent);
     }
-
 
 }
