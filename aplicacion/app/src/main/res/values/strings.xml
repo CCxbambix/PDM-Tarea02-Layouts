@@ -26,13 +26,14 @@
     <string name="text12">Introduce tu nombre</string>
     <string name="text13">Nombre del usuario</string>
     <string name="text14">Introduce tu direccion</string>
-    <string name="text15">Enviar</string>
+    <string name="text15">Iniciar sesión</string>
     <string name="menu1">Carrito</string>
     <string name="menu2">Configuracion</string>
-    <string name="menu3">Cuenta</string>
+    <string name="menu3">Cerrar sesión</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="titleToolBar">Pedido Chilaquiles</string>
     <string name="titleNavigator">Chilaquiles</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="msjBienvenida">Bienvenido: </string>
 </resources>

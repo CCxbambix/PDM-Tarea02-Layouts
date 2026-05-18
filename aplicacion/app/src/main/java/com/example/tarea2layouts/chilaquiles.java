@@ -1,5 +1,6 @@
 package com.example.tarea2layouts;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,11 +14,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
 public class chilaquiles extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
 
+    Intent intendDos;
+    String nombretxt;
+    TextView vistaNombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +31,10 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         Toolbar toolbars = findViewById(R.id.toolbar);
         setSupportActionBar(toolbars);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        intendDos= getIntent();
+        nombretxt= intendDos.getStringExtra(MainActivity.EXTRA_NOMBRE);
+        vistaNombre = findViewById(R.id.textView7);
+        vistaNombre.setText(nombretxt);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbars, R.string.navigation_drawer_open,
@@ -59,7 +68,9 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         } else if (id==R.id.configuracion) {
             Log.d("ToolBar",(String) "action_Configuracion :) ");
         } else if (id== R.id.cuenta) {
-            Log.d("ToolBar",(String) "action_Cuenta :) ");
+            Log.d("ToolBar",(String) "action_Cerrar Sesión :) ");
+            Intent intent = new Intent(chilaquiles.this, MainActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -73,7 +84,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
                     return true;
         }else if(itemId == R.id.nav_eliminar){
             drawerLayout.closeDrawer(GravityCompat.START);
-            Log.d("Navigation", (String) "Action ELiminar :)");
+            Log.d("Navigation", (String) "Action Eliminar :)");
             return true;
         }else if(itemId == R.id.nav_modificar){
             drawerLayout.closeDrawer(GravityCompat.START);
