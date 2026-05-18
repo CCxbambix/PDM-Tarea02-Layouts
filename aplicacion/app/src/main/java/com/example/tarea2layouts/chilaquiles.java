@@ -37,6 +37,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
     private CheckBox queso;
     private CheckBox crema;
     private CheckBox frijoles;
+    private TextView direccion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,28 +120,28 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
     private void goToNextActivity() {
 
 
-        String pedido= "Chilaquiles";
+        String pedido= "Chilaquiles:";
         radiobttn = findViewById(R.id.radioGroup2);
         int idRadioBttn= radiobttn.getCheckedRadioButtonId();
 
         if (idRadioBttn == R.id.radioButton5){
-            pedido += " Verdes";
+            pedido += " Verdes\n";
         }else if(idRadioBttn == R.id.radioButton6) {
-            pedido += "Rojos";
+            pedido += "Rojos\n";
         }else{
-            pedido+= "ninguna";
+            pedido+= "ninguna\n";
         }
-        pedido += ", con proteina: ";
+        pedido += "Con proteina: ";
         radioProteina = findViewById(R.id.radioGroup3);
         int idProteina = radioProteina.getCheckedRadioButtonId();
         if(idProteina == R.id.radioButton12){
-            pedido += "Huevo";
+            pedido += "Huevo\n";
         }else if(idProteina == R.id.radioButton13){
-            pedido += "Pehuga de pollo";
+            pedido += "Pehuga de pollo\n";
         }else if(idProteina == R.id.radioButton14){
-        pedido += "Bistec";
+        pedido += "Bistec\n";
         }else{
-            pedido+= "ninguna";
+            pedido+= "ninguna\n";
         }
         cebolla = findViewById(R.id.checkBox4);
         queso = findViewById(R.id.checkBox5);
@@ -148,17 +149,19 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         frijoles = findViewById(R.id.checkBox7);
         pedido+= "Con complementos";
         if(cebolla.isChecked()){
-            pedido += "cebolla";
+            pedido += " cebolla,";
         }
         if(queso.isChecked()){
-            pedido += "queso";
+            pedido += " queso,";
         }
         if(crema.isChecked()){
-            pedido += "crema";
+            pedido += " crema,";
         }
         if(frijoles.isChecked()){
-            pedido += "frijoles";
+            pedido += " frijoles";
         }
+        direccion = (TextView) findViewById(R.id.textDireccion);
+        pedido += " \nDirección de entrega" + direccion.getText().toString();
 
         Intent intent = new Intent(chilaquiles.this, carrito.class);
         intent.putExtra(EXTRA_PEDIDO, pedido);
