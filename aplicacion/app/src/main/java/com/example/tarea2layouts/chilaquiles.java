@@ -14,6 +14,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -21,8 +25,19 @@ import com.google.android.material.navigation.NavigationView;
 public class chilaquiles extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
 
     Intent intendDos;
-    String nombretxt;
-    TextView vistaNombre;
+    private String nombretxt;
+    private TextView vistaNombre;
+
+    static final String EXTRA_PEDIDO = "pedido";
+
+    private RadioGroup radiobttn;
+    private RadioGroup radioProteina;
+    private Button bttnChilaquiles;
+    private CheckBox cebolla;
+    private CheckBox queso;
+    private CheckBox crema;
+    private CheckBox frijoles;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +46,8 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         Toolbar toolbars = findViewById(R.id.toolbar);
         setSupportActionBar(toolbars);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        intendDos= getIntent();
-        nombretxt= intendDos.getStringExtra(MainActivity.EXTRA_NOMBRE);
+        intendDos = getIntent();
+        nombretxt = intendDos.getStringExtra(MainActivity.EXTRA_NOMBRE);
         vistaNombre = findViewById(R.id.textView7);
         vistaNombre.setText(nombretxt);
 
@@ -50,8 +65,10 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
-
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -64,6 +81,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         int id = item.getItemId();
         if(id==R.id.carrito){
             Log.d("ToolBar",(String) "action_Carrito :) ");
+            goToNextActivity();
             return true;
         } else if (id==R.id.configuracion) {
             Log.d("ToolBar",(String) "action_Configuracion :) ");
@@ -96,6 +114,55 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
             return true;
         }
         return false;
+    }
+
+    private void goToNextActivity() {
+
+
+        String pedido= "Chilaquiles";
+        radiobttn = findViewById(R.id.radioGroup2);
+        int idRadioBttn= radiobttn.getCheckedRadioButtonId();
+
+        if (idRadioBttn == R.id.radioButton5){
+            pedido += " Verdes";
+        }else if(idRadioBttn == R.id.radioButton6) {
+            pedido += "Rojos";
+        }else{
+            pedido+= "ninguna";
+        }
+        pedido += ", con proteina: ";
+        radioProteina = findViewById(R.id.radioGroup3);
+        int idProteina = radioProteina.getCheckedRadioButtonId();
+        if(idProteina == R.id.radioButton12){
+            pedido += "Huevo";
+        }else if(idProteina == R.id.radioButton13){
+            pedido += "Pehuga de pollo";
+        }else if(idProteina == R.id.radioButton14){
+        pedido += "Bistec";
+        }else{
+            pedido+= "ninguna";
+        }
+        cebolla = findViewById(R.id.checkBox4);
+        queso = findViewById(R.id.checkBox5);
+        crema = findViewById(R.id.checkBox6);
+        frijoles = findViewById(R.id.checkBox7);
+        pedido+= "Con complementos";
+        if(cebolla.isChecked()){
+            pedido += "cebolla";
+        }
+        if(queso.isChecked()){
+            pedido += "queso";
+        }
+        if(crema.isChecked()){
+            pedido += "crema";
+        }
+        if(frijoles.isChecked()){
+            pedido += "frijoles";
+        }
+
+        Intent intent = new Intent(chilaquiles.this, carrito.class);
+        intent.putExtra(EXTRA_PEDIDO, pedido);
+        startActivity(intent);
     }
 
 

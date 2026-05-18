@@ -21,8 +21,8 @@
     <string name="checkbox7">Frijoles</string>
     <string name="text8">Dirección de entrega</string>
     <string name="text9">Marca los deportes que hagas</string>
-    <string name="text10">Introduce tu correo</string>
-    <string name="text11">Correo del usuario</string>
+    <string name="text10">Introduce tu contraseña</string>
+    <string name="text11">Contraseña del usuario</string>
     <string name="text12">Introduce tu nombre</string>
     <string name="text13">Nombre del usuario</string>
     <string name="text14">Introduce tu direccion</string>
@@ -36,4 +36,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="msjBienvenida">Bienvenido: </string>
+    <string name="msjRegreso">Regresar al menu</string>
+    <string name= "conPedido">Confirmar pedido</string>
 </resources>
