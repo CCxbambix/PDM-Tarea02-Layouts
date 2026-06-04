@@ -14,13 +14,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class chilaquiles extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
 
@@ -38,6 +41,12 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
     private CheckBox crema;
     private CheckBox frijoles;
     private TextView direccion;
+    private TextInputLayout layOutDireccion;
+    private Toast toastError;
+
+    private Button bttnPedido;
+
+    private TextInputLayout layOutDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +75,69 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
+        layoutDir = (TextInputLayout) findViewById(R.id.textInputLayout3);
+        bttnPedido = (Button) findViewById(R.id.bttnPedido);
+        bttnPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pedido= "Chilaquiles:";
+                radiobttn = findViewById(R.id.radioGroup2);
+                int idRadioBttn= radiobttn.getCheckedRadioButtonId();
+
+                if (idRadioBttn == R.id.radioButton5){
+                    pedido += " Verdes\n";
+                }else if(idRadioBttn == R.id.radioButton6) {
+                    pedido += "Rojos\n";
+                }else{
+                    toastError.makeText(this,"Error: por favor escoga una salsa",Toast.LENGHT_SHORT).show();
+                    return;
+                }
+                pedido += "Proteina: ";
+                radioProteina = findViewById(R.id.radioGroup3);
+                int idProteina = radioProteina.getCheckedRadioButtonId();
+                if(idProteina == R.id.radioButton12){
+                    pedido += "Huevo\n";
+                }else if(idProteina == R.id.radioButton13){
+                    pedido += "Pehuga de pollo\n";
+                }else if(idProteina == R.id.radioButton14){
+                    pedido += "Bistec\n";
+                }else{
+                    toastError.makeText(this,"Error: por favor escoga una proteina",Toast.LENGTH_SHORT).show;
+                    return;
+                }
+                cebolla = findViewById(R.id.checkBox4);
+                queso = findViewById(R.id.checkBox5);
+                crema = findViewById(R.id.checkBox6);
+                frijoles = findViewById(R.id.checkBox7);
+                pedido+= "Complementos:";
+                if(cebolla.isChecked()){
+                    pedido += " cebolla,";
+                }
+                if(queso.isChecked()){
+                    pedido += " queso,";
+                }
+                if(crema.isChecked()){
+                    pedido += " crema,";
+                }
+                if(frijoles.isChecked()){
+                    pedido += " frijoles";
+                }
+                if(cebolla.isChecked()==false&queso.isChecked()==false&crema.isChecked()==false&frijoles.isChecked()==false){
+                    pedido+="ningun complemento";
+                }
+                direccion = (TextView) findViewById(R.id.textDireccion);
+                String cadenaDireccion= direccion.getText().toString();
+                if(cadenaDireccion!=null) {
+                    if (cadenaDireccion.length() == 0) {
+                        toastError.makeText(this, "Error: por favor introduce una dirección para la entrega ", Toast.LENGTH_SHORT).show();
+                        layOutDir.setError("Dirección vacia");
+                        return;
+                    }
+                }
+                layOutDir.setError(null);
+                pedido += " \nDirección de entrega: " + direccion.getText().toString();
+            }
+        });
     }
 
 
@@ -118,51 +190,6 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
     }
 
     private void goToNextActivity() {
-
-
-        String pedido= "Chilaquiles:";
-        radiobttn = findViewById(R.id.radioGroup2);
-        int idRadioBttn= radiobttn.getCheckedRadioButtonId();
-
-        if (idRadioBttn == R.id.radioButton5){
-            pedido += " Verdes\n";
-        }else if(idRadioBttn == R.id.radioButton6) {
-            pedido += "Rojos\n";
-        }else{
-            pedido+= "ninguna\n";
-        }
-        pedido += "Proteina: ";
-        radioProteina = findViewById(R.id.radioGroup3);
-        int idProteina = radioProteina.getCheckedRadioButtonId();
-        if(idProteina == R.id.radioButton12){
-            pedido += "Huevo\n";
-        }else if(idProteina == R.id.radioButton13){
-            pedido += "Pehuga de pollo\n";
-        }else if(idProteina == R.id.radioButton14){
-        pedido += "Bistec\n";
-        }else{
-            pedido+= "ninguna\n";
-        }
-        cebolla = findViewById(R.id.checkBox4);
-        queso = findViewById(R.id.checkBox5);
-        crema = findViewById(R.id.checkBox6);
-        frijoles = findViewById(R.id.checkBox7);
-        pedido+= "Complementos:";
-        if(cebolla.isChecked()){
-            pedido += " cebolla,";
-        }
-        if(queso.isChecked()){
-            pedido += " queso,";
-        }
-        if(crema.isChecked()){
-            pedido += " crema,";
-        }
-        if(frijoles.isChecked()){
-            pedido += " frijoles";
-        }
-        direccion = (TextView) findViewById(R.id.textDireccion);
-        pedido += " \nDirección de entrega: " + direccion.getText().toString();
-
         Intent intent = new Intent(chilaquiles.this, carrito.class);
         intent.putExtra(EXTRA_PEDIDO, pedido);
         startActivity(intent);
