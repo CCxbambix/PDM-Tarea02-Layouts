@@ -1,6 +1,7 @@
 package com.example.tarea2layouts;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class carrito extends AppCompatActivity {
 
@@ -18,6 +24,14 @@ public class carrito extends AppCompatActivity {
 
     private String pedidotxt;
     private TextView vistaPedido;
+    private final String nameFile = "myPreference";
+    private  String KEY_PEDIDOS = "pedido";
+
+    private RecyclerView mRecyclerV;
+
+    private ArrayList<String> pedidosList;
+
+    private SharedPreferences sharedPreferences;
     Intent intendTres;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +48,12 @@ public class carrito extends AppCompatActivity {
         vistaPedido = findViewById(R.id.pedido);
         vistaPedido.setText(pedidotxt);
         bttnRegreso = (Button) findViewById(R.id.bttnRegresoC);
+        sharedPreferences.getSharedPreference(nameFile,MODE_PRIVATE);
+        Set<String> setPedidos = sharedPref.getStringSet(KEY_PEDIDOS, new HashSet<String>());
+        pedidosList = new ArrayList<>(setPedidos);
+
+
+
         bttnRegreso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

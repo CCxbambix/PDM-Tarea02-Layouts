@@ -7,15 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".carrito">
 
-    <TextView
-        android:id="@+id/pedido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:text=""
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="409dp"
+        android:layout_height="611dp"
+        tools:layout_editor_absoluteX="parent"
+        tools:layout_editor_absoluteY="parent"
+        android:scrollbars="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/bttnRegresoC"/>
 
     <Button
         android:id="@+id/bttnRegresoC"
@@ -26,4 +27,5 @@
         android:text="@string/msjRegreso"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

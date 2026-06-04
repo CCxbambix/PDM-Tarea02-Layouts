@@ -1,6 +1,7 @@
 package com.example.tarea2layouts;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -25,6 +26,9 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class chilaquiles extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
 
     Intent intendDos;
@@ -47,7 +51,11 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
     private Button bttnPedido;
 
     private TextInputLayout layOutDir;
+    private final SharedPreferences sharedPref;
 
+    private  String KEY_PEDIDOS = "pedido";
+
+    private final String nameFile = "myPreference";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +68,9 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         nombretxt = intendDos.getStringExtra(MainActivity.EXTRA_NOMBRE);
         vistaNombre = findViewById(R.id.textView7);
         vistaNombre.setText(nombretxt);
+        sharedPref.getSharedPreferences(nameFile,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        Set<String> setPedidos = sharedPref.getStringSet(KEY_PEDIDOS, new HashSet<String>());
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbars, R.string.navigation_drawer_open,
@@ -102,7 +113,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
                 }else if(idProteina == R.id.radioButton14){
                     pedido += "Bistec\n";
                 }else{
-                    toastError.makeText(this,"Error: por favor escoga una proteina",Toast.LENGTH_SHORT).show;
+                    toastError.makeText(this,"Error: por favor escoga una proteina",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 cebolla = findViewById(R.id.checkBox4);
@@ -136,12 +147,14 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
                 }
                 layOutDir.setError(null);
                 pedido += " \nDirección de entrega: " + direccion.getText().toString();
+                Set<String> nuevoSet = new HashSet<>(setPedidos);
+                nuevoSet.add(pedido);
+                editor.putStringSet(KEY_PEDIDOS,nuevoSet);
+                editor.apply();
+                toastError.makeText(this,"Su pedido se ha guardado con exito",Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -191,7 +204,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
 
     private void goToNextActivity() {
         Intent intent = new Intent(chilaquiles.this, carrito.class);
-        intent.putExtra(EXTRA_PEDIDO, pedido);
+        //intent.putExtra(EXTRA_PEDIDO, pedido);
         startActivity(intent);
     }
 
