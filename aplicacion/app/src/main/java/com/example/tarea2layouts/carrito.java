@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -27,11 +29,11 @@ public class carrito extends AppCompatActivity {
     private final String nameFile = "myPreference";
     private  String KEY_PEDIDOS = "pedido";
 
-    private RecyclerView mRecyclerV;
-
     private ArrayList<String> pedidosList;
 
     private SharedPreferences sharedPreferences;
+
+    private ListView listV;
     Intent intendTres;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +47,13 @@ public class carrito extends AppCompatActivity {
         });
         intendTres= getIntent();
         pedidotxt= intendTres.getStringExtra(chilaquiles.EXTRA_PEDIDO);
-        vistaPedido = findViewById(R.id.pedido);
-        vistaPedido.setText(pedidotxt);
         bttnRegreso = (Button) findViewById(R.id.bttnRegresoC);
-        sharedPreferences.getSharedPreference(nameFile,MODE_PRIVATE);
-        Set<String> setPedidos = sharedPref.getStringSet(KEY_PEDIDOS, new HashSet<String>());
+        sharedPreferences=getSharedPreferences(nameFile,MODE_PRIVATE);
+        Set<String> setPedidos = sharedPreferences.getStringSet(KEY_PEDIDOS, new HashSet<String>());
         pedidosList = new ArrayList<>(setPedidos);
-
-
-
+        listV= (ListView) findViewById(R.id.list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pedidosList);
+        listV.setAdapter(adapter);
         bttnRegreso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

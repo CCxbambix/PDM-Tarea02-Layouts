@@ -45,13 +45,11 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
     private CheckBox crema;
     private CheckBox frijoles;
     private TextView direccion;
-    private TextInputLayout layOutDireccion;
+    private TextInputLayout layOutDir;
     private Toast toastError;
 
     private Button bttnPedido;
-
-    private TextInputLayout layOutDir;
-    private final SharedPreferences sharedPref;
+    private SharedPreferences sharedPref;
 
     private  String KEY_PEDIDOS = "pedido";
 
@@ -68,7 +66,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         nombretxt = intendDos.getStringExtra(MainActivity.EXTRA_NOMBRE);
         vistaNombre = findViewById(R.id.textView7);
         vistaNombre.setText(nombretxt);
-        sharedPref.getSharedPreferences(nameFile,MODE_PRIVATE);
+        sharedPref = getSharedPreferences(nameFile,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         Set<String> setPedidos = sharedPref.getStringSet(KEY_PEDIDOS, new HashSet<String>());
 
@@ -86,7 +84,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
-        layoutDir = (TextInputLayout) findViewById(R.id.textInputLayout3);
+        layOutDir = (TextInputLayout) findViewById(R.id.textInputLayout3);
         bttnPedido = (Button) findViewById(R.id.bttnPedido);
         bttnPedido.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +98,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
                 }else if(idRadioBttn == R.id.radioButton6) {
                     pedido += "Rojos\n";
                 }else{
-                    toastError.makeText(this,"Error: por favor escoga una salsa",Toast.LENGHT_SHORT).show();
+                    toastError.makeText(getApplicationContext(),"Error: por favor escoga una salsa",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 pedido += "Proteina: ";
@@ -113,7 +111,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
                 }else if(idProteina == R.id.radioButton14){
                     pedido += "Bistec\n";
                 }else{
-                    toastError.makeText(this,"Error: por favor escoga una proteina",Toast.LENGTH_SHORT).show();
+                    toastError.makeText(getApplicationContext(),"Error: por favor escoga una proteina",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 cebolla = findViewById(R.id.checkBox4);
@@ -140,7 +138,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
                 String cadenaDireccion= direccion.getText().toString();
                 if(cadenaDireccion!=null) {
                     if (cadenaDireccion.length() == 0) {
-                        toastError.makeText(this, "Error: por favor introduce una dirección para la entrega ", Toast.LENGTH_SHORT).show();
+                        toastError.makeText(getApplicationContext(), "Error: por favor introduce una dirección para la entrega ", Toast.LENGTH_SHORT).show();
                         layOutDir.setError("Dirección vacia");
                         return;
                     }
@@ -151,7 +149,7 @@ public class chilaquiles extends AppCompatActivity implements  NavigationView.On
                 nuevoSet.add(pedido);
                 editor.putStringSet(KEY_PEDIDOS,nuevoSet);
                 editor.apply();
-                toastError.makeText(this,"Su pedido se ha guardado con exito",Toast.LENGTH_SHORT).show();
+                toastError.makeText(getApplicationContext(),"Su pedido se ha guardado con exito",Toast.LENGTH_SHORT).show();
             }
         });
     }

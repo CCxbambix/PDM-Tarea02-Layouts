@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        layOutPass.seterror(null);
+        layOutPass.setError(null);
         Intent intent = new Intent(MainActivity.this, chilaquiles.class);
         intent.putExtra(EXTRA_NOMBRE, nombre.getText().toString());
         startActivity(intent);
