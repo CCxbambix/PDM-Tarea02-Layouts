@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tarea2Layouts">
         <activity
+            android:name=".administradorUsuario"
+            android:exported="false" />
+        <activity
             android:name=".carrito"
             android:exported="false" />
         <activity

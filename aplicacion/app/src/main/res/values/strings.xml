@@ -37,5 +37,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="msjBienvenida">Bienvenido: </string>
     <string name="msjRegreso">Regresar al menu</string>
-    <string name= "conPedido">Confirmar pedido</string>
+    <string name="conPedido">Confirmar pedido</string>
+    <string name="msjboton2">Crear una cuenta</string>
+    <string name="textcrearusuario">Introduce el nombre de usuario</string>
+    <string name="textcrearcontraseña">Introduce la contraseña para tu usuario</string>
+    <string name="textinicio">Volver al inicio de sesión</string>
+    <string name="txtcrearcuenta">Crear usuario</string>
 </resources>
